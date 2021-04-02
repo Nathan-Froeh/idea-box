@@ -1,11 +1,11 @@
 import './sideNav.scss';
+import { Box } from "@chakra-ui/react"
 
-function SideNav() {
+export function SideNav() {
   return (
-    <div class="side-nav">
+    <Box className="side-nav">
 
-    </div>
+    </Box>
   )
 }
 
-export default SideNav;

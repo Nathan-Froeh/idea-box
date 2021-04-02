@@ -1,10 +1,17 @@
 import './topNav.scss';
+import { Box } from "@chakra-ui/react"
 
-function TopNav() {
+export function TopNav() {
   return (
-    <div class="top-nav">
+    <Box className="top-nav" h={70}>
+      <Box h={5} bg='#FF6347'></Box>
+      
+      <Box className="top-nav-content">
+        <h2>IdeaBox</h2>
 
-    </div>
+      </Box>
+
+    </Box>
   )
 }
 

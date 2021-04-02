@@ -1,7 +1,7 @@
 
 import './App.css';
-import {TopNav} from './topNav';
-import {SideNav} from './sideNav';
+import {TopNav} from './topNav/topNav';
+import {SideNav} from './sideNav/sideNav';
 
 function App() {
   return (
