@@ -1,5 +1,5 @@
 
-import './App.css';
+import './App.scss';
 import {TopNav} from './topNav/topNav';
 import {SideNav} from './sideNav/sideNav';
 
@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <TopNav></TopNav>
 
-      <div>
+      <div className='main-container'>
         <SideNav></SideNav>
 
         <main>
