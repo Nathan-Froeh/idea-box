@@ -23,13 +23,14 @@ export function SideNav() {
     if (!values.message) {
       errors.message = 'Required';
     }
+    console.log('errors', errors)
     return errors;
   };
 
   const formik = useFormik({
     initialValues: {
-      title: '',
-      message: ''
+      title: '1',
+      message: '2'
     },
     validate,
     onSubmit: values => {
@@ -52,19 +53,19 @@ export function SideNav() {
         <Form>
           <Field name="title">
             {({ field, form }) => (
-              <FormControl isInvalid={form.errors.title && form.touched.title}>
+              <FormControl isInvalid={formik.errors.title && formik.touched.title}>
                 <FormLabel>Title</FormLabel>
                 <Input {...field} id="title" onChange={formik.handleChange} value={formik.values.title} placeholder="title" />
-                <FormErrorMessage>{form.errors.title}</FormErrorMessage>
+                <FormErrorMessage>{formik.errors.title}</FormErrorMessage>
               </FormControl>
             )}
           </Field>
           <Field name="message">
             {({ field, form }) => (
-              <FormControl isInvalid={form.errors.message && form.touched.message}>
+              <FormControl isInvalid={formik.errors.message && formik.touched.message}>
                 <FormLabel>Message</FormLabel>
                 <Textarea {...field} id="message" placeholder="message" onChange={formik.handleChange} value={formik.values.message}/>
-                <FormErrorMessage>{form.errors.message}</FormErrorMessage>
+                <FormErrorMessage>{formik.errors.message}</FormErrorMessage>
               </FormControl>
             )}
           </Field>
