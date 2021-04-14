@@ -3,29 +3,44 @@ import {
   Box,
   Button,
   Input,
-  // Textarea,
+  Textarea,
   FormControl,
   FormLabel,
   FormErrorMessage,
   
 } from "@chakra-ui/react"
-import { Formik, Field, Form } from 'formik';
+import { Formik, Field, Form, useFormik } from 'formik';
 
 
 export function SideNav() {
 
-  function required(value) {
-    let error = '';
-    if (!value) {
-      error = "Required"
-    } 
-    return error
-  }
+
+  const validate = values => {
+    const errors = {};
+    if (!values.title) {
+      errors.title = 'Required';
+    }
+    if (!values.message) {
+      errors.message = 'Required';
+    }
+    return errors;
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      title: '',
+      message: ''
+    },
+    validate,
+    onSubmit: values => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
 
   return (
     <Box className="side-nav" w='300px'>
       <Formik
-        initialValues={{ name: "Sasuke" }}
+        initialValues={{  title: '1', message: '2' }}
         onSubmit={(values, actions) => {
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2))
@@ -35,12 +50,21 @@ export function SideNav() {
       >
       {(props) => (
         <Form>
-          <Field name="title" validate={required}>
+          <Field name="title">
             {({ field, form }) => (
               <FormControl isInvalid={form.errors.title && form.touched.title}>
                 <FormLabel>Title</FormLabel>
-                <Input {...field} id="title" placeholder="title" />
+                <Input {...field} id="title" onChange={formik.handleChange} value={formik.values.title} placeholder="title" />
                 <FormErrorMessage>{form.errors.title}</FormErrorMessage>
+              </FormControl>
+            )}
+          </Field>
+          <Field name="message">
+            {({ field, form }) => (
+              <FormControl isInvalid={form.errors.message && form.touched.message}>
+                <FormLabel>Message</FormLabel>
+                <Textarea {...field} id="message" placeholder="message" onChange={formik.handleChange} value={formik.values.message}/>
+                <FormErrorMessage>{form.errors.message}</FormErrorMessage>
               </FormControl>
             )}
           </Field>
