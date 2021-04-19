@@ -27,6 +27,10 @@ export function SideNav() {
     return error
   }
 
+  const sub = (event) => {
+    event.preventDefault()
+    console.log('submit', event.target)
+  }
 
   return (
     <Box className="side-nav" w='300px'>
@@ -38,15 +42,14 @@ export function SideNav() {
             alert(JSON.stringify(values, null, 2))
             actions.setSubmitting(false)
           }, 1000)
-        }}
-      >
+        }}>
         {(props) => (
-          <Form>
+          <Form onSubmit={sub}>
             <Field name="title" validate={validate}>
               {({ field, form }) => (
                 <FormControl isInvalid={form.errors.title && form.touched.title}>
                   <FormLabel>Title</FormLabel>
-                  <Input {...field} id="title" placeholder="title" />
+                  <Input {...field} id="title"/>
                   <FormErrorMessage>{form.errors.title}</FormErrorMessage>
                 </FormControl>
               )}
@@ -55,19 +58,19 @@ export function SideNav() {
              {({ field, form }) => (
                 <FormControl isInvalid={form.errors.message && form.touched.message}>
                   <FormLabel>Message</FormLabel>
-                  <Textarea {...field} id="message" placeholder="message" onChange={form.handleChange} value={form.values.message}/>
+                  <Textarea {...field} id="message" onChange={form.handleChange} value={form.values.message}/>
                   <FormErrorMessage>{form.errors.message}</FormErrorMessage>
                 </FormControl>
               )}
             </Field>
-            <Button
-              mt={4}
-              colorScheme="teal"
-              isLoading={props.isSubmitting}
-              type="submit"
-            >
-              Submit
-            </Button>
+            <Box m="4">
+              <Button colorScheme="teal" isLoading={props.isSubmitting} type="submit">
+                Submit
+              </Button>
+              <Button colorScheme="teal" type="reset" variant="outline">
+                Clear
+              </Button>
+            </Box>
           </Form>
         )}
       </Formik>
