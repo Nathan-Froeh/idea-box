@@ -7,7 +7,7 @@ import {
   FormControl,
   FormLabel,
   FormErrorMessage,
-  
+  Flex
 } from "@chakra-ui/react"
 import { 
   Formik, 
@@ -33,7 +33,7 @@ export function SideNav() {
   }
 
   return (
-    <Box className="side-nav" w='300px'>
+    <Box className="side-nav" w='300px' p="5">
 
       <Formik
         initialValues={{ title: "", message: "" }}
@@ -45,7 +45,7 @@ export function SideNav() {
         }}>
         {(props) => (
           <Form onSubmit={sub}>
-            <Field name="title" validate={validate}>
+            <Field name="title" validate={validate} mb="10">
               {({ field, form }) => (
                 <FormControl isInvalid={form.errors.title && form.touched.title}>
                   <FormLabel>Title</FormLabel>
@@ -54,7 +54,7 @@ export function SideNav() {
                 </FormControl>
               )}
             </Field>
-            <Field name="message" validate={validate}>
+            <Field name="message" validate={validate} mb="10">
              {({ field, form }) => (
                 <FormControl isInvalid={form.errors.message && form.touched.message}>
                   <FormLabel>Message</FormLabel>
@@ -63,14 +63,15 @@ export function SideNav() {
                 </FormControl>
               )}
             </Field>
-            <Box m="4">
+            <Flex align="center" justify="space-between">
+
               <Button colorScheme="teal" isLoading={props.isSubmitting} type="submit">
                 Submit
               </Button>
               <Button colorScheme="teal" type="reset" variant="outline">
                 Clear
               </Button>
-            </Box>
+            </Flex>
           </Form>
         )}
       </Formik>
