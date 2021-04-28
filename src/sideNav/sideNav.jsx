@@ -27,9 +27,10 @@ export function SideNav() {
     return error
   }
 
-  const sub = (event) => {
+  const submit = (event) => {
     event.preventDefault()
-    console.log('submit', event.target)
+    console.log('title:', event.target.title.value)
+    console.log('message:', event.target.message.value)
   }
 
   return (
@@ -44,7 +45,7 @@ export function SideNav() {
           }, 1000)
         }}>
         {(props) => (
-          <Form onSubmit={sub}>
+          <Form onSubmit={submit}>
             <Field name="title" validate={validate} mb="10">
               {({ field, form }) => (
                 <FormControl isInvalid={form.errors.title && form.touched.title}>
@@ -65,11 +66,11 @@ export function SideNav() {
             </Field>
             <Flex align="center" justify="space-between">
 
-              <Button colorScheme="teal" isLoading={props.isSubmitting} type="submit">
-                Submit
-              </Button>
               <Button colorScheme="teal" type="reset" variant="outline">
                 Clear
+              </Button>
+              <Button colorScheme="teal" isLoading={props.isSubmitting} type="submit">
+                Submit
               </Button>
             </Flex>
           </Form>
