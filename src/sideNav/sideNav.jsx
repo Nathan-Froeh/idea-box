@@ -15,9 +15,12 @@ import {
   Form, 
   // useFormik,
  } from 'formik';
+ import React, { useState } from 'react';
+
 
 
 export function SideNav() {
+  const [cards, setCard] = useState([])
 
   function validate(value) {
     let error
@@ -29,8 +32,9 @@ export function SideNav() {
 
   const submit = (event) => {
     event.preventDefault()
-    console.log('title:', event.target.title.value)
-    console.log('message:', event.target.message.value)
+    const {title, message} = event.target;
+    setCard([...cards, {title: title.value, message: message.value}])
+    console.log('Cards', cards)
   }
 
   return (
