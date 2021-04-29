@@ -23,7 +23,7 @@ import { Context } from '../Store/Store';
 
 export function SideNav() {
   const [cards, setCard] = useState([]);
-  const [state, dispatch] = useContext(Context)
+  const [state, dispatch] = useContext(Context);
 
   function validate(value) {
     let error
