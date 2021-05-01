@@ -1,21 +1,16 @@
 /* eslint-disable no-unused-vars */
 
 import './App.scss';
-import {Store, Context} from './Store/Store';
+import {Context} from './Store/Store';
 import {TopNav} from './topNav/topNav';
 import {SideNav} from './sideNav/sideNav';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Card } from './card/card';
 
 function App() {
   const {state, dispatch} = useContext(Context);
 
-  useEffect(() => {
-
-  })
-
   return (
-    <Store>
       <div className="App">
         <TopNav></TopNav>
 
@@ -25,13 +20,11 @@ function App() {
           <main>
             {
               state.ideas.map((idea, i) => {
-              console.log('idea', idea)
-              return <Card card={idea}></Card>})
+              return <Card card={idea} key={i}></Card>})
             }
           </main>
         </div>
       </div>
-    </Store>
   );
 }
 

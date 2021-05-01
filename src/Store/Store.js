@@ -1,17 +1,21 @@
-import React from "react"
-import { reducer, initialState } from "./Reducer"
+/* eslint-disable no-unused-vars */
 
-export const Context = React.createContext({
-  state: initialState,
-  dispatch: () => null
-})
+import React, {createContext, useReducer} from "react";
+import { reducer } from "./Reducer"
 
-export const Store = ({ children }) => {
-  const [state, dispatch] = React.useReducer(reducer, initialState)
 
-  return (
-    <Context.Provider value={[ state, dispatch ]}>
-    	{ children }
-    </Context.Provider>
-  )
+const initialState = {
+  ideas: [{title: 'test title 1', message: 'test message 1'}]
 }
+
+export const Context = createContext(initialState);
+
+
+export const Store = ({children}) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  return (
+      <Context.Provider value={{state, dispatch}}>
+          {children}
+      </Context.Provider>
+  )
+};

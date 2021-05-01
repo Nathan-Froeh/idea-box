@@ -22,8 +22,8 @@ import { Context } from '../Store/Store';
 
 
 export function SideNav() {
-  const [cards, setCard] = useState([]);
-  const [state, dispatch] = useContext(Context);
+  // const [cards, setCard] = useState([]);
+  const {state, dispatch} = useContext(Context);
 
   function validate(value) {
     let error
@@ -36,9 +36,8 @@ export function SideNav() {
   const submit = (event) => {
     event.preventDefault()
     const {title, message} = event.target;
-    // setCard([...cards, {title: title.value, message: message.value}])
+
     dispatch({type: 'ADD-IDEA', payload: {title: title.value, message: message.value}})
-    console.log('Cards', state)
   }
 
   return (
