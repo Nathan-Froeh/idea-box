@@ -1,10 +1,10 @@
 
 export const initialState = {
-  ideas: []
+  ideas: [{title: 'test title 1', message: 'test message 1'}]
 }
 
 export const reducer = (state, action) => {
-
+  console.log(state, action)
   switch(action.type) {
     case 'ADD-IDEA':
       return {

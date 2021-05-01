@@ -4,11 +4,15 @@ import './App.scss';
 import {Store, Context} from './Store/Store';
 import {TopNav} from './topNav/topNav';
 import {SideNav} from './sideNav/sideNav';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Card } from './card/card';
 
 function App() {
-  const [state, dispatch] = useContext(Context);
+  const {state, dispatch} = useContext(Context);
+
+  useEffect(() => {
+
+  })
 
   return (
     <Store>
@@ -19,9 +23,10 @@ function App() {
           <SideNav></SideNav>
 
           <main>
-            
             {
-              state.ideas.map(idea => <Card card={idea}></Card>)
+              state.ideas.map((idea, i) => {
+              console.log('idea', idea)
+              return <Card card={idea}></Card>})
             }
           </main>
         </div>

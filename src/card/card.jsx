@@ -4,16 +4,17 @@ import {
 } from "@chakra-ui/react";
 
 export function Card(props) {
-
+  const {card} = props;
+  console.log('props', props)
 
   return (
     <Box h="300px" w="200px">
       <Box w="100%" h="30px">
-        {props.title}
+        {card.title}
       </Box>
 
       <Box w="100%" h="150px">
-        {props.message}
+        {card.message}
       </Box>
 
       <Box w="100%" h="20px">
