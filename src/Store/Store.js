@@ -5,7 +5,12 @@ import { reducer } from "./Reducer"
 
 
 const initialState = {
-  ideas: [{title: 'test title 1', message: 'test message 1'}]
+  ideas: [{
+    id: '1',
+    favorite: true,
+    title: 'test title 1', 
+    message: 'test message 1'
+  }]
 }
 
 export const Context = createContext(initialState);

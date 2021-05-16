@@ -14,15 +14,13 @@ import {
   Formik, 
   Field, 
   Form, 
-  // useFormik,
  } from 'formik';
  import React, { useState, useContext } from 'react';
 import { Context } from '../Store/Store';
-
+import { v4 as uuidv4 } from 'uuid';
 
 
 export function SideNav() {
-  // const [cards, setCard] = useState([]);
   const {state, dispatch} = useContext(Context);
 
   function validate(value) {
@@ -37,7 +35,12 @@ export function SideNav() {
     event.preventDefault()
     const {title, message} = event.target;
 
-    dispatch({type: 'ADD-IDEA', payload: {title: title.value, message: message.value}})
+    dispatch({type: 'ADD-IDEA', payload: {
+      id: uuidv4(),
+      favorite: false,
+      title: title.value, 
+      message: message.value
+    }})
   }
 
   return (
